@@ -1,0 +1,48 @@
+<div uk-grid class="uk-child-width-1 form-container">
+  <div class="uk-card uk-card-default uk-card-body form-container-center">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <fieldset class="uk-fieldset">
+
+        <div uk-grid>
+          <div>
+            <legend class="uk-legend uk-margin-right">Log in</legend>
+          </div>
+          <!--error messages for devise-->
+          <div class="devise_error_msg uk-label uk-label-danger">
+            <% if alert %>
+              <p class="alert"><%= alert %></p>
+            <% end %>
+            <% if notice %>
+              <p class="notice"><%= notice %></p>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="uk-margin">
+          <%= f.label :email %><br/>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'uk-input' %>
+        </div>
+
+
+        <div class="uk-margin">
+          <%= f.label :password %><br/>
+          <%= f.password_field :password, autocomplete: "off", class: 'uk-input' %>
+        </div>
+
+        <% if devise_mapping.rememberable? -%>
+          <div class="uk-margin">
+            <%= f.check_box :remember_me, class: "uk-checkbox" %>
+            <%= f.label :remember_me %>
+          </div>
+        <% end -%>
+
+        <div class="actions">
+          <%= f.submit "Log in", class: "uk-button uk-button-primary" %>
+        </div>
+
+      </fieldset>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+  </div>
+</div>

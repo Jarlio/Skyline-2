@@ -1,0 +1,32 @@
+// Place all the styles related to the welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+// authentication
+
+div.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.form-container-center {
+  width: 80%;
+  margin-top: 50px;
+}
+
+div.form-link {
+  text-align: center;
+}
+
+div.devise_error_msg {
+  height: auto;
+  padding: 0;
+
+  p{
+    padding: 10px;
+  }
+}
+
+div.form-links-container{
+  margin-top: 20px;
+}
