@@ -1,7 +1,8 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-// authentication
+
+/* --- authentication --- */
 
 div.form-container {
   display: flex;
@@ -10,7 +11,7 @@ div.form-container {
 }
 
 div.form-container-center {
-  width: 80%;
+  width: 500px;
   margin-top: 50px;
 }
 
@@ -22,11 +23,55 @@ div.devise_error_msg {
   height: auto;
   padding: 0;
 
-  p{
+  p {
     padding: 10px;
   }
 }
 
-div.form-links-container{
+div.form-links-container {
   margin-top: 20px;
+}
+
+/* ---authentication-error---*/
+div#error_explanation {
+  margin-top: 20px;
+
+  ul {
+    list-style-type: none;
+    color: red;
+  }
+}
+
+/*--- welcome-page content---*/
+div.wel_content {
+  margin-top: 10%;
+  margin-left: 10%;
+  max-width: 500px;
+}
+
+div.wel_keeper_head {
+  font-size: 1.7em;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  line-height: 48px;
+  position: relative;
+  height: 80px;
+}
+
+div.wel_header_keeper > h1 {
+  background-color: transparent;
+}
+
+span.text-gradient {
+  z-index: -1;
+  position: absolute;
+  width: 230px;
+  height: 30px;
+  top: 20px;
+  left: -10px;
+  background: linear-gradient(to right, orangered, orange); /* Standard syntax (must be last) */
+}
+
+nav#nav_bar {
+  height: 60px;
 }
