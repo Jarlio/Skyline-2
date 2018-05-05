@@ -1,3 +1,80 @@
 // Place all the styles related to the User controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* ---profile--- */
+div.profile-header {
+  position: relative;
+}
+
+/* --- profile background--- */
+div.profile-background {
+  height: 300px;
+}
+
+/* --- profile card --- */
+div.profile-card {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: 300px;
+  top: 200px;
+  left: 100px;
+}
+
+div.profile-card-header {
+  padding-top: 7px;
+  text-align: center;
+}
+
+div.profile-picture {
+  height: 200px;
+}
+
+div.profile-categories {
+  width: 100%;
+  display: inline-flex;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+div.category {
+  color: #e6e6e6;
+  background: #0e6dcd;
+  padding: 5px 10px;
+  margin: 3px;
+  font-size: 0.7em;
+  border-radius: 15px;
+  text-align: center;
+  height: 16px;
+}
+
+/* --- profile content --- */
+div.profile-content {
+  width: calc(100% - 550px);
+  height: 600px;
+  margin: 50px 50px 50px 500px;
+}
+
+div.profile-content > ul {
+  padding-top: 20px;
+  padding-left: 20px;
+}
+
+span.profile-cpn-button {
+  cursor: pointer;
+}
+
+/* --- profile control panel ---*/
+div.control-panel {
+  opacity: 0.8;
+  filter: alpha(opacity=80); /* For IE8 and earlier */
+}
+
+div.control-panel button.form-opener {
+  background: transparent;
+  width: 100%;
+  margin-top: 20px;
+  height: 50px;
+  cursor: pointer;
+}

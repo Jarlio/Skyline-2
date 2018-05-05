@@ -1,25 +1,19 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+An app made for information sharing.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# Skyline-2
+TODO:
+1. Profile
+    * Background
+    * About me
+    * Specialization
+2. Articles
+    * Database
+    * Creator
+        * Charts
+        * Tables
+        * Paragraphs
+    * Show and editor
+    * Subscribe system
+    * Rating system
+3. Admin Page

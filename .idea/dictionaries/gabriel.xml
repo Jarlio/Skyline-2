@@ -1,8 +1,26 @@
 <component name="ProjectDictionaryState">
   <dictionary name="gabriel">
     <words>
+      <w>authenticatable</w>
+      <w>bcrypt</w>
+      <w>byebug</w>
+      <w>capybara</w>
+      <w>carrierwave</w>
+      <w>confirmable</w>
       <w>dropdown</w>
+      <w>jbuilder</w>
       <w>navbar</w>
+      <w>offcanvas</w>
+      <w>omniauthable</w>
+      <w>registerable</w>
+      <w>rememberable</w>
+      <w>rubocop</w>
+      <w>therubyracer</w>
+      <w>timeoutable</w>
+      <w>trackable</w>
+      <w>uglifier</w>
+      <w>uikit</w>
+      <w>validatable</w>
     </words>
   </dictionary>
 </component>

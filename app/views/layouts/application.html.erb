@@ -14,11 +14,15 @@
 <nav class="uk-navbar-container" uk-navbar>
   <div class="uk-navbar-left">
     <a class="uk-navbar-item uk-logo" href="/">Skyline</a>
-
+    <div class="uk-margin">
+      <div class="uk-search uk-search-default search">
+        <span class="uk-search-icon-flip" uk-search-icon></span>
+        <input class="uk-search-input" type="search" placeholder="Search...">
+      </div>
+    </div>
   </div>
 
   <div class="uk-navbar-right">
-
     <ul class="uk-navbar-nav">
       <% if user_signed_in? %>
         <li>

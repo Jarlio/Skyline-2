@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   # username is needed for users to be find by links
   # ex: localhost:3000/user/gabriel
   def configure_permitted_parameters
-    added_attrs = %i[username email password password_confirmation remember_me]
+    added_attrs = %i[username name email password password_confirmation remember_me]
     devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
   end
