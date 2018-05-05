@@ -52,7 +52,8 @@ div.category {
 /* --- profile content --- */
 div.profile-content {
   width: calc(100% - 550px);
-  height: 600px;
+  min-height: 400px;
+  height: auto;
   margin: 50px 50px 50px 500px;
 }
 
@@ -77,4 +78,9 @@ div.control-panel button.form-opener {
   margin-top: 20px;
   height: 50px;
   cursor: pointer;
+}
+
+/* --- modals --- */
+textarea.description{
+  height: 500px;
 }
