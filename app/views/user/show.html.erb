@@ -39,10 +39,28 @@
     </ul>
 
     <div id="my-id" class="uk-switcher uk-margin">
+      <!--  -->
       <div class="articles uk-padding-small">
-        This slide contains a hidden link, that selects the next slide when clicked. The click is simulated by
-        jacascript to mimic autoplay.
+
+        <!--iterate over user articles-->
+        <% @user.articles.each do |article| %>
+          <article class="uk-article">
+            <h1 class="uk-article-title"><a class="uk-link-reset" href=""><%= article.title %></a></h1>
+            <p class="uk-article-meta">Written on <%= article.created_at %>.</p>
+            <p><%= article.intro %></p>
+
+            <!-- go to article -->
+            <div class="uk-grid-small uk-child-width-auto" uk-grid>
+              <div>
+                <a class="uk-button uk-button-text" href="/article/<%= article.id %>">Read more</a>
+              </div>
+            </div>
+          </article>
+        <% end %>
+
       </div>
+
+      <!--display info about user-->
       <div class="uk-padding-small">
         <div class="uk-flex uk-flex-between uk-flex-stretch">
           <div><p>Sex: <%= @user.sex ? 'Woman' : 'Men' %></p></div>
@@ -66,6 +84,7 @@
 
         <button class="uk-offcanvas-close" type="button" uk-close></button>
 
+        <!-- Button to change avatar -->
         <div class="uk button-container">
           <button class="uk-button uk-button-default form-opener" type="button" id="avatar_button">Avatar</button>
           <div uk-drop="mode: click">
@@ -78,6 +97,7 @@
           </div>
         </div>
 
+        <!-- Button to change background -->
         <div class="uk button-container">
           <button class="uk-button uk-button-default form-opener" type="button" id="background_button">Background</button>
           <div uk-drop="mode: click">
@@ -90,16 +110,23 @@
           </div>
         </div>
 
+
+        <!-- button toggling the modal age and genre -->
         <div class="uk button-container">
-          <!-- button toggling the modal age and genre -->
           <button class="uk-button uk-button-default form-opener" type="button" uk-toggle="target: #age-ang-genre-modal">Age
             and genre
           </button>
         </div>
 
+        <!-- button toggling the modal description -->
         <div class="uk button-container">
-          <!-- button toggling the modal description -->
           <button class="uk-button uk-button-default form-opener" type="button" uk-toggle="target: #description-modal">Description
+          </button>
+        </div>
+
+        <!-- button toggling the modal description -->
+        <div class="uk button-container">
+          <button class="uk-button uk-button-default form-opener" type="button" uk-toggle="target: #new-article-modal">New Article
           </button>
         </div>
 
@@ -109,7 +136,7 @@
   </div>
 </div>
 
-<!-- Modal for introduceing age and sex-->
+<!-- Modal for introducing age and sex-->
 <div id="age-ang-genre-modal" uk-modal>
   <div class="uk-modal-dialog uk-modal-body">
     <h2 class="uk-modal-title">Sex and age</h2>
@@ -131,13 +158,30 @@
   </div>
 </div>
 
-<!-- This is the modal for introducing description -->
+<!-- modal about me-->
 <div id="description-modal" uk-modal>
   <div class="uk-modal-dialog uk-modal-body">
     <h2 class="uk-modal-title">Description</h2>
     <%= form_for @user, url: user_update_path, html: {method: :post} do |f| %>
       <div class="uk-margin">
         <%= f.text_area :description, class: 'uk-textarea uk-margin-small description' %>
+        <button class="uk-button uk-button-default">Submit</button>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<!-- modal to create new article -->
+<div id="new-article-modal" uk-modal>
+  <div class="uk-modal-dialog uk-modal-body">
+    <h2 class="uk-modal-title">New Article</h2>
+    <%= form_with scope: :article, url: article_new_path, local: true do |f| %>
+      <div class="uk-margin">
+        <%= f.label :title %>: <br>
+        <%= f.text_field :title, class: 'uk-input' %>
+      </div>
+      <div class="uk-margin">
+        <%= f.text_area :intro, class: 'uk-textarea uk-margin-small article' %>
         <button class="uk-button uk-button-default">Submit</button>
       </div>
     <% end %>

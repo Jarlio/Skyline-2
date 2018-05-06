@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  get 'article/show'
+
+  get '/article/:id', to: 'article#show', as: 'article'
+  post '/article/create', to: 'article#create', as: 'article_new'
 
   devise_for :users
 

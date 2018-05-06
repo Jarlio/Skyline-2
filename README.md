@@ -13,6 +13,8 @@ TODO:
         * Charts
         * Tables
         * Paragraphs
+        * photo galleries
+        * code
     * Show and editor
     * Subscribe system
     * Rating system
