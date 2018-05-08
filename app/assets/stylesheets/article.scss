@@ -4,3 +4,15 @@ article.article{
   }
 }
 
+div.article-buttons{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 200px;
+
+  button{
+    margin: 5px;
+    width: 400px;
+  }
+}

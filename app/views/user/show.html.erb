@@ -73,120 +73,128 @@
   </div>
 
   <!-- user control panel / off canvas -->
-  <div class="uk-offcanvas-content">
+  <!-- content available only if this is the profile of logged user -->
+  <% if @user == current_user %>
+    <div class="uk-offcanvas-content">
 
-    <!-- This is an anchor toggling the off-canvas -->
-    <a href="#control-panel" uk-toggle></a>
+      <!-- This is an anchor toggling the off-canvas -->
+      <a href="#control-panel" uk-toggle></a>
 
-    <!-- This is the off-canvas -->
-    <div id="control-panel" uk-offcanvas>
-      <div class="uk-offcanvas-bar control-panel">
+      <!-- This is the off-canvas -->
+      <div id="control-panel" uk-offcanvas>
+        <div class="uk-offcanvas-bar control-panel">
 
-        <button class="uk-offcanvas-close" type="button" uk-close></button>
+          <button class="uk-offcanvas-close" type="button" uk-close></button>
 
-        <!-- Button to change avatar -->
-        <div class="uk button-container">
-          <button class="uk-button uk-button-default form-opener" type="button" id="avatar_button">Avatar</button>
-          <div uk-drop="mode: click">
-            <div class="uk-card uk-card-body uk-card-default profile_container" style="display: none">
-              <%= form_for @user, url: user_update_path, html: {method: :post} do |f| %>
-                <%= f.file_field :avatar, id: 'avatar_input' %>
-                <%= f.submit 'Upload', id: 'avatar_submit' %>
-              <% end %>
+          <!-- Button to change avatar -->
+          <div class="uk button-container">
+            <button class="uk-button uk-button-default form-opener" type="button" id="avatar_button">Avatar</button>
+            <div uk-drop="mode: click">
+              <div class="uk-card uk-card-body uk-card-default profile_container" style="display: none">
+                <%= form_for @user, url: user_update_path, html: {method: :post} do |f| %>
+                  <%= f.file_field :avatar, id: 'avatar_input' %>
+                  <%= f.submit 'Upload', id: 'avatar_submit' %>
+                <% end %>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Button to change background -->
-        <div class="uk button-container">
-          <button class="uk-button uk-button-default form-opener" type="button" id="background_button">Background</button>
-          <div uk-drop="mode: click">
-            <div class="uk-card uk-card-body uk-card-default profile_container" style="display: none">
-              <%= form_for @user, url: user_update_path, html: {method: :post} do |f| %>
-                <%= f.file_field :background, id: 'background_input' %>
-                <%= f.submit 'Upload', id: 'background_submit' %>
-              <% end %>
+          <!-- Button to change background -->
+          <div class="uk button-container">
+            <button class="uk-button uk-button-default form-opener" type="button" id="background_button">Background</button>
+            <div uk-drop="mode: click">
+              <div class="uk-card uk-card-body uk-card-default profile_container" style="display: none">
+                <%= form_for @user, url: user_update_path, html: {method: :post} do |f| %>
+                  <%= f.file_field :background, id: 'background_input' %>
+                  <%= f.submit 'Upload', id: 'background_submit' %>
+                <% end %>
+              </div>
             </div>
           </div>
+
+
+          <!-- button toggling the modal age and genre -->
+          <div class="uk button-container">
+            <button class="uk-button uk-button-default form-opener" type="button" uk-toggle="target: #age-ang-genre-modal">Age
+              and genre
+            </button>
+          </div>
+
+          <!-- button toggling the modal description -->
+          <div class="uk button-container">
+            <button class="uk-button uk-button-default form-opener" type="button" uk-toggle="target: #description-modal">Description
+            </button>
+          </div>
+
+          <!-- button toggling the modal new article -->
+          <div class="uk button-container">
+            <button class="uk-button uk-button-default form-opener" type="button" uk-toggle="target: #new-article-modal">New
+              Article
+            </button>
+          </div>
+
         </div>
-
-
-        <!-- button toggling the modal age and genre -->
-        <div class="uk button-container">
-          <button class="uk-button uk-button-default form-opener" type="button" uk-toggle="target: #age-ang-genre-modal">Age
-            and genre
-          </button>
-        </div>
-
-        <!-- button toggling the modal description -->
-        <div class="uk button-container">
-          <button class="uk-button uk-button-default form-opener" type="button" uk-toggle="target: #description-modal">Description
-          </button>
-        </div>
-
-        <!-- button toggling the modal description -->
-        <div class="uk button-container">
-          <button class="uk-button uk-button-default form-opener" type="button" uk-toggle="target: #new-article-modal">New Article
-          </button>
-        </div>
-
       </div>
+
     </div>
+  <% end %>
 
-  </div>
 </div>
 
-<!-- Modal for introducing age and sex-->
-<div id="age-ang-genre-modal" uk-modal>
-  <div class="uk-modal-dialog uk-modal-body">
-    <h2 class="uk-modal-title">Sex and age</h2>
-    <%= form_for @user, url: user_update_path, html: {method: :post} do |f| %>
-      <div class="uk-margin">
-        <%= f.label :sex %>:<br/>
-        <%= f.select :sex, options_for_select([['Men', 0], ['Women', 1]]), {}, {class: 'uk-select'} %>
-      </div>
-      <div class="uk-margin">
-        <%= f.label :age, 'Date of birth' %>:<br/>
-        <%= f.date_select :age,
-                          # values can be changed in user controller
-                          {:order => [:day, :month, :year], start_year: @start, end_year: @end},
-                          {class: 'uk-select uk-form-width-small'}
-        %>
-        <button class="uk-button uk-button-default ">Submit</button>
-      </div>
-    <% end %>
+<!-- content available only if this is the profile of logged user -->
+<% if @user == current_user %>
+  <!-- Modal for introducing age and sex-->
+  <div id="age-ang-genre-modal" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+      <h2 class="uk-modal-title">Sex and age</h2>
+      <%= form_for @user, url: user_update_path, html: {method: :post} do |f| %>
+        <div class="uk-margin">
+          <%= f.label :sex %>:<br/>
+          <%= f.select :sex, options_for_select([['Men', 0], ['Women', 1]]), {}, {class: 'uk-select'} %>
+        </div>
+        <div class="uk-margin">
+          <%= f.label :age, 'Date of birth' %>:<br/>
+          <%= f.date_select :age,
+                            # values can be changed in user controller
+                            {:order => [:day, :month, :year], start_year: @start, end_year: @end},
+                            {class: 'uk-select uk-form-width-small'}
+          %>
+          <button class="uk-button uk-button-default ">Submit</button>
+        </div>
+      <% end %>
+    </div>
   </div>
-</div>
 
-<!-- modal about me-->
-<div id="description-modal" uk-modal>
-  <div class="uk-modal-dialog uk-modal-body">
-    <h2 class="uk-modal-title">Description</h2>
-    <%= form_for @user, url: user_update_path, html: {method: :post} do |f| %>
-      <div class="uk-margin">
-        <%= f.text_area :description, class: 'uk-textarea uk-margin-small description' %>
-        <button class="uk-button uk-button-default">Submit</button>
-      </div>
-    <% end %>
+  <!-- modal about me-->
+  <div id="description-modal" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+      <h2 class="uk-modal-title">Description</h2>
+      <%= form_for @user, url: user_update_path, html: {method: :post} do |f| %>
+        <div class="uk-margin">
+          <%= f.text_area :description, class: 'uk-textarea uk-margin-small description' %>
+          <button class="uk-button uk-button-default">Submit</button>
+        </div>
+      <% end %>
+    </div>
   </div>
-</div>
 
-<!-- modal to create new article -->
-<div id="new-article-modal" uk-modal>
-  <div class="uk-modal-dialog uk-modal-body">
-    <h2 class="uk-modal-title">New Article</h2>
-    <%= form_with scope: :article, url: article_new_path, local: true do |f| %>
-      <div class="uk-margin">
-        <%= f.label :title %>: <br>
-        <%= f.text_field :title, class: 'uk-input' %>
-      </div>
-      <div class="uk-margin">
-        <%= f.text_area :intro, class: 'uk-textarea uk-margin-small article' %>
-        <button class="uk-button uk-button-default">Submit</button>
-      </div>
-    <% end %>
+  <!-- modal to create new article -->
+  <div id="new-article-modal" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+      <h2 class="uk-modal-title">New Article</h2>
+      <%= form_with scope: :article, url: article_new_path, local: true do |f| %>
+        <div class="uk-margin">
+          <%= f.label :title %>: <br>
+          <%= f.text_field :title, class: 'uk-input' %>
+        </div>
+        <div class="uk-margin">
+          <%= f.text_area :intro, class: 'uk-textarea uk-margin-small article' %>
+          <button class="uk-button uk-button-default">Submit</button>
+        </div>
+      <% end %>
+    </div>
   </div>
-</div>
+<% end %>
 
 <!--only this page scripts-->
 <%= javascript_include_tag 'user' %>

@@ -8,7 +8,10 @@ TODO:
     * About me
     * Specialization
 2. Articles
-    * Database
+    * Database - done
+    * Create - done
+    * Delete
+    * Edit
     * Creator
         * Charts
         * Tables
@@ -19,3 +22,8 @@ TODO:
     * Subscribe system
     * Rating system
 3. Admin Page
+
+Regular todo
+* Make error messages in one layout
+* Add bold and italic to articles
+* Users can upload their fonts
