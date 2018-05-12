@@ -1,18 +1,11 @@
 Rails.application.routes.draw do
-
-
-  get 'paragraphs/create'
-
-  get 'paragraphs/show'
-
-  get 'paragraphs/update'
-
   # article
   get '/article/:id', to: 'article#show', as: 'article'
   post '/article/create', to: 'article#create', as: 'article_new'
 
   # paragraph
   post 'paragraph/create/:article_id', to: 'paragraph#create', as: 'paragraph_new'
+  post 'paragraph/delete/:id', to: 'paragraph#destroy', as: 'paragraph_delete'
 
   devise_for :users
 

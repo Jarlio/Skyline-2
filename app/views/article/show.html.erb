@@ -10,10 +10,17 @@
     <p><%= @article.intro %></p>
 
     <% @article.paragraphs.each do |paragraph| %>
-      <% unless paragraph.title.nil? || paragraph.title.length == 0 %>
-        <h3><%= paragraph.title %></h3>
-      <% end %>
-      <p><%= paragraph.content %></p>
+      <div id="para<%= paragraph.id %>">
+        <% unless paragraph.title.nil? || paragraph.title.length == 0 %>
+          <h3><%= paragraph.title %></h3>
+        <% end %>
+        <p><%= paragraph.content %>
+        <% if current_user == @article.user %>
+          <!-- TODO fix ajax delete -->
+          <%= link_to 'remove', paragraph_delete_path(paragraph.id), method: :post,data: {confirm: "Are you sure"}, remote: false %>
+        <% end %>
+        </p>
+      </div>
     <% end %>
 
   </article>

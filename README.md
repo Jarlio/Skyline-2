@@ -27,3 +27,4 @@ Regular todo
 * Make error messages in one layout
 * Add bold and italic to articles
 * Users can upload their fonts
+* Paragraph indentation

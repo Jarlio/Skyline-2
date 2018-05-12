@@ -11,7 +11,6 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require jquery/jquery
 //= require uikit/uikit
 //= require uikit/uikit-icons
 

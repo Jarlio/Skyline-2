@@ -22,6 +22,20 @@ class ParagraphController < ApplicationController
     end
   end
 
+  def destroy
+    @paragraph = Paragraph.find(params[:id])
+    id = @paragraph.article.id
+    @paragraph.destroy
+
+
+    respond_to do |format|
+      format.html { redirect_to article_path(id) }
+      # render paragraph/destroy.js.erb
+      # fix this error
+      format.js { render action: 'destroy' }
+    end
+  end
+
   private
 
   def paragraph_params
