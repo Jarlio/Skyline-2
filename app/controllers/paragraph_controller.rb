@@ -1,5 +1,9 @@
 # paragraph controller
 class ParagraphController < ApplicationController
+
+  # TODO: middleware
+  # - just author of the article can use this controller
+
   def create
     @article = Article.find(params[:article_id])
 
