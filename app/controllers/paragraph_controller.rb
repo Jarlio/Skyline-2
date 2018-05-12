@@ -35,7 +35,7 @@ class ParagraphController < ApplicationController
     respond_to do |format|
       format.html { redirect_to article_path(id) }
       # render paragraph/destroy.js.erb
-      # fix this error
+      # TODO: fix this error: the file will not load
       format.js { render action: 'destroy' }
     end
   end
