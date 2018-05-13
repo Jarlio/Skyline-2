@@ -39,7 +39,6 @@
     </ul>
 
     <div id="my-id" class="uk-switcher uk-margin">
-      <!--  -->
       <div class="articles uk-padding-small">
 
         <!--iterate over user articles-->
@@ -49,10 +48,13 @@
             <p class="uk-article-meta">Written on <%= article.created_at %>.</p>
             <p><%= article.intro %></p>
 
-            <!-- go to article -->
+            <!-- go to articles -->
             <div class="uk-grid-small uk-child-width-auto" uk-grid>
               <div>
-                <a class="uk-button uk-button-text" href="/article/<%= article.id %>">Read more</a>
+                <%= link_to 'Read more', article_path(article.id), class: 'uk-button uk-button-text' %>
+                <% if @user == current_user %>
+                  | <%= link_to 'Delete article', article_path(article.id), method: :delete, class: 'uk-button uk-button-text' %>
+                <% end %>
               </div>
             </div>
           </article>
@@ -126,7 +128,7 @@
             </button>
           </div>
 
-          <!-- button toggling the modal new article -->
+          <!-- button toggling the modal new articles -->
           <div class="uk button-container">
             <button class="uk-button uk-button-default form-opener" type="button" uk-toggle="target: #new-article-modal">New
               Article
@@ -165,7 +167,7 @@
     </div>
   </div>
 
-  <!-- modal about me-->
+  <!-- modal about me -->
   <div id="description-modal" uk-modal>
     <div class="uk-modal-dialog uk-modal-body">
       <h2 class="uk-modal-title">Description</h2>
@@ -178,11 +180,11 @@
     </div>
   </div>
 
-  <!-- modal to create new article -->
+  <!-- modal to create new articles -->
   <div id="new-article-modal" uk-modal>
     <div class="uk-modal-dialog uk-modal-body">
       <h2 class="uk-modal-title">New Article</h2>
-      <%= form_with scope: :article, url: article_new_path, local: true do |f| %>
+      <%= form_with scope: :article, url: articles_path, local: true do |f| %>
         <div class="uk-margin">
           <%= f.label :title %>: <br>
           <%= f.text_field :title, class: 'uk-input' %>

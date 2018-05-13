@@ -1,0 +1,6 @@
+<div class="uk-container-expand uk-padding-small container-center">
+  <span class="uk-label uk-label-danger"><%= @message %></span><br>
+  <% if user_signed_in? %>
+    <p>Return to <%= link_to 'your profile', user_profile_url(current_user.username) %> and try again</p>
+  <% end %>
+</div>
