@@ -29,6 +29,20 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def update
+    @article = Article.find(params[:id])
+
+    if @article.user == current_user
+      if @article.update(article_params)
+        redirect_to @article
+      else
+        redirect_to error_path('Article could not be updated')
+      end
+    else
+      redirect_to error_path('Article could not be updated')
+    end
+  end
+
   private
 
   def article_params

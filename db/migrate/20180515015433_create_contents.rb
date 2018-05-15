@@ -20,7 +20,7 @@ class CreateContents < ActiveRecord::Migration[5.1]
       t.string :title
       t.text :paragraph
       t.json :chart
-      t.integer :type, null: false
+      t.integer :c_type, null: false
 
       t.timestamps
     end

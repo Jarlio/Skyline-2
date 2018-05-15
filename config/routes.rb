@@ -1,15 +1,6 @@
 Rails.application.routes.draw do
-  get 'contents/destroy'
-
-  get 'contents/create'
-
-  get 'contents/update'
-
-  get 'contents/delete'
-
   devise_for :users
-
-
+  
   resources :articles, only: %i[show update destroy create]
 
   resources :articles do

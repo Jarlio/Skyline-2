@@ -9,19 +9,21 @@
 
     <p><%= @article.intro %></p>
 
-    <%# @article.paragraphs.each do |paragraph| %>
-<!--      <div id="para<%#= paragraph.id %>">-->
-        <%# unless paragraph.title.nil? || paragraph.title.length == 0 %>
-<!--          <h3><%#= paragraph.title %></h3>-->
-        <%# end %>
-<!--        <p><%#= paragraph.content %>-->
-        <%# if current_user == @article.user %>
-<!--          <!-- TODO fix ajax delete -->
-    <%#= link_to 'remove', paragraph_delete_path(paragraph.id), method: :post,data: {confirm: "Are you sure"}, remote: false %>
-        <%# end %>
-<!--        </p>-->
-<!--      </div>-->
-    <%# end %>
+    <% @article.contents.each do |content| %>
+      <!-- check if type is a paragraph -->
+      <% if content.c_type == 1 %>
+        <div id="para<%= content.id %>">
+          <% unless content.title.nil? || content.title.length == 0 %>
+            <h3><%= content.title %></h3>
+          <% end %>
+          <p><%= content.paragraph %>
+            <% if current_user == @article.user %>
+              <%= link_to 'remove', article_content_path(@article, content), method: :delete, data: {confirm: "Are you sure"}, remote: false %>
+            <% end %>
+          </p>
+        </div>
+      <% end %>
+    <% end %>
 
   </article>
 
@@ -31,25 +33,25 @@
       <button class="uk-button uk-button-primary" type="button" uk-toggle="target: #new-paragraph-modal">New paragraph
       </button>
       <button class="uk-button uk-button-primary">New chart</button>
-      <button class="uk-button uk-button-primary">New source/code</button>
-      <button class="uk-button uk-button-primary">New table</button>
+      <button class="uk-button uk-button-primary">New Photo gallery</button>
     </div>
 
-    <!-- modal to create new articles -->
-<!--    <div id="new-paragraph-modal" uk-modal>-->
-<!--      <div class="uk-modal-dialog uk-modal-body">-->
-<!--        <h2 class="uk-modal-title">New Paragraph</h2>-->
-        <%#= form_with scope: :paragraph, url: paragraph_new_path(@article.id), local: true do |f| %>
-<!--          <div class="uk-margin">-->
-<!--            <%#= f.label :title %>: <br>-->
-            <%#= f.text_field :title, class: 'uk-input' %>
-<!--          </div>-->
-<!--          <div class="uk-margin">-->
-            <%#= f.text_area :content, class: 'uk-textarea uk-margin-small articles' %>
-<!--            <button class="uk-button uk-button-default">Submit</button>-->
-<!--          </div>-->
-        <%# end %>
-<!--      </div>-->
-<!--    </div>-->
+    <!-- modal to create new paragraph -->
+    <div id="new-paragraph-modal" uk-modal>
+      <div class="uk-modal-dialog uk-modal-body">
+        <h2 class="uk-modal-title">New Paragraph</h2>
+        <%= form_with scope: :content, url: article_contents_path(@article), local: true do |f| %>
+          <div class="uk-margin">
+            <%= f.label :title %>: <br>
+            <%= f.text_field :title, class: 'uk-input' %>
+          </div>
+          <%= f.hidden_field :c_type, value: '1' %>
+          <div class="uk-margin">
+            <%= f.text_area :paragraph, class: 'uk-textarea uk-margin-small articles' %>
+            <button class="uk-button uk-button-default">Submit</button>
+          </div>
+        <% end %>
+      </div>
+    </div>
   <% end %>
 </div>
