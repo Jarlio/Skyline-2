@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180508140941) do
+ActiveRecord::Schema.define(version: 20180515022715) do
 
   create_table "articles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "title", null: false
@@ -21,13 +21,15 @@ ActiveRecord::Schema.define(version: 20180508140941) do
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
-  create_table "paragraphs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.string "title", null: false
-    t.text "content", null: false
+  create_table "contents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string "title"
+    t.text "paragraph"
+    t.json "chart"
+    t.integer "type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "article_id", null: false
-    t.index ["article_id"], name: "index_paragraphs_on_article_id"
+    t.bigint "article_id"
+    t.index ["article_id"], name: "index_contents_on_article_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -56,5 +58,5 @@ ActiveRecord::Schema.define(version: 20180508140941) do
   end
 
   add_foreign_key "articles", "users"
-  add_foreign_key "paragraphs", "articles"
+  add_foreign_key "contents", "articles"
 end

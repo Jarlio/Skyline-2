@@ -6,6 +6,6 @@ class Article < ApplicationRecord
   validates :intro, presence: true
   validates :user_id, presence: true
 
-  # has_many :paragraphs, dependent: :delete_all
+  has_many :contents, dependent: :delete_all
   belongs_to :user
 end
