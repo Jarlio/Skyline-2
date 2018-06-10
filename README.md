@@ -28,3 +28,5 @@ Regular todo
 * Add bold and italic to articles
 * Users can upload their fonts
 * Paragraph indentation
+* New fonts
+* Search users and articles

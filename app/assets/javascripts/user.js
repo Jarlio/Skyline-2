@@ -15,5 +15,3 @@ $('#background_input').on('change', function () {
 $('button#background_button').click(function () {
     $('#background_input').click()
 })
-
-// 

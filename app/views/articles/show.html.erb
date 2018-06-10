@@ -9,49 +9,14 @@
 
     <p><%= @article.intro %></p>
 
-    <% @article.contents.each do |content| %>
-      <!-- check if type is a paragraph -->
-      <% if content.c_type == 1 %>
-        <div id="para<%= content.id %>">
-          <% unless content.title.nil? || content.title.length == 0 %>
-            <h3><%= content.title %></h3>
-          <% end %>
-          <p><%= content.paragraph %>
-            <% if current_user == @article.user %>
-              <%= link_to 'remove', article_content_path(@article, content), method: :delete, data: {confirm: "Are you sure"}, remote: false %>
-            <% end %>
-          </p>
-        </div>
-      <% end %>
-    <% end %>
-
   </article>
 
   <!--author articles control panel-->
   <% if @article.user == current_user %>
     <div class="uk-container-expand article-buttons">
-      <button class="uk-button uk-button-primary" type="button" uk-toggle="target: #new-paragraph-modal">New paragraph
-      </button>
+      <button class="uk-button uk-button-primary">New paragraph</button>
       <button class="uk-button uk-button-primary">New chart</button>
       <button class="uk-button uk-button-primary">New Photo gallery</button>
-    </div>
-
-    <!-- modal to create new paragraph -->
-    <div id="new-paragraph-modal" uk-modal>
-      <div class="uk-modal-dialog uk-modal-body">
-        <h2 class="uk-modal-title">New Paragraph</h2>
-        <%= form_with scope: :content, url: article_contents_path(@article), local: true do |f| %>
-          <div class="uk-margin">
-            <%= f.label :title %>: <br>
-            <%= f.text_field :title, class: 'uk-input' %>
-          </div>
-          <%= f.hidden_field :c_type, value: '1' %>
-          <div class="uk-margin">
-            <%= f.text_area :paragraph, class: 'uk-textarea uk-margin-small articles' %>
-            <button class="uk-button uk-button-default">Submit</button>
-          </div>
-        <% end %>
-      </div>
     </div>
   <% end %>
 </div>
