@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+
   devise_for :users
   
   resources :articles, only: %i[show update destroy create]
 
   resources :articles do
-    resources :contents, only: %i[create update destroy]
+    resources :paragraphs, only: %i[create update destroy]
+    resources :paragraph2s, only: %i[create update destroy]
   end
 
   get '/error/:message', to: 'error#show', as: 'error'

@@ -9,6 +9,15 @@
 
     <p><%= @article.intro %></p>
 
+    <% @contents.each do |content| %>
+      <% if content.class == Paragraph %>
+        <% unless content.title.nil? %>
+          <h3 class="paragraph_title"><%= content.title %></h3>
+        <% end %>
+        <p><%= content.text %></p>
+      <% end %>
+    <% end %>
+
   </article>
 
   <!--author articles control panel-->

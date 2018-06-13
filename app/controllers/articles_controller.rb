@@ -4,6 +4,10 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+
+    @contents = []
+    @contents += @article.paragraphs
+    @contents.sort_by! {|content| content.position }
   end
 
   def destroy
