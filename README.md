@@ -30,3 +30,8 @@ Regular todo
 * Paragraph indentation
 * New fonts
 * Search users and articles
+* Make pages adaptable at any resolution
+    * Homepage
+    * navbar
+    * article
+    * profile

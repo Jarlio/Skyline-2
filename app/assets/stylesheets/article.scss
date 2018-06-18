@@ -1,18 +1,68 @@
-article.article{
-  h1{
-    text-align: center;
+div.article-container {
+  article.article {
+    h1 {
+      text-align: center;
+    }
   }
-}
 
-div.article-buttons{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 200px;
+  p{
+    font-family: "Calibre", -apple-system, BlinkMacSystemFont, "Avenir Next", "Avenir", "Segoe UI", "Lucida Grande", "Helvetica Neue", "Helvetica", "Fira Sans", "Roboto", "Noto", "Droid Sans", "Cantarell", "Oxygen", "Ubuntu", "Franklin Gothic Medium", "Century Gothic", "Liberation Sans", sans-serif;
+  }
 
-  button{
-    margin: 5px;
-    width: 400px;
+  div.article-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 200px;
+
+    .uk-button {
+      margin: 5px;
+      width: 400px;
+    }
+
+    transition: visibility 0s linear 0.33s, opacity 0.33s linear;
+  }
+
+  div.article-form-container {
+    margin-top: 20px;
+    input {
+      margin-top: 10px;
+    }
+
+    textarea {
+      margin-top: 20px;
+      resize: vertical;
+      height: 300px;
+    }
+
+    button {
+      margin: 5px;
+      width: 400px;
+    }
+
+    button.cancel-para-btn {
+      background: darkgray;
+    }
+
+    div.submit-button {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  // control panel functionality
+  div#new-paragraph {
+    display: none;
+  }
+
+  div.paragraph_form{
+    textarea {
+      margin-top: 20px;
+      resize: vertical;
+      height: 200px;
+    }
   }
 }

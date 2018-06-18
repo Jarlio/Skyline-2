@@ -1,0 +1,24 @@
+<div class="article-form-container paragraph_form" id="edit-paragraph">
+  <%#= form_with scope: :paragraph, controller: :paragraph, action: :create, method: :post, remote: false do |f| %>
+  <%= form_with(model: [@article, @paragraph], local: true) do |f| %>
+    <%= f.text_field :title, class: 'uk-input', placeholder: 'Title of paragraph (optional, can be a subtitle of the article)' %>
+    <%= f.text_area :text, class: 'uk-textarea', placeholder: 'Content of paragraph' %>
+    <div class="submit-button">
+      <button class="uk-button uk-button-primary">Submit</button>
+      <button type="button" class="cancel-para-btn cancel-para-form-btn uk-button uk-button-primary">Cancel</button>
+    </div>
+  <% end %>
+</div>
+
+<script>
+    var id = <%= @paragraph.id %>;
+    $('button.cancel-para-form-btn').on('click', function(){
+        $('div.paragraph_form').remove();
+        $('div.paragraph-content').show()
+    });
+</script>
+
+<!--
+cancel-para-btn: used for css
+cancel-para-form-btn: used for functionality, check article.js
+-->

@@ -5,8 +5,7 @@ Rails.application.routes.draw do
   resources :articles, only: %i[show update destroy create]
 
   resources :articles do
-    resources :paragraphs, only: %i[create update destroy]
-    resources :paragraph2s, only: %i[create update destroy]
+    resources :paragraphs, only: %i[create edit update destroy]
   end
 
   get '/error/:message', to: 'error#show', as: 'error'

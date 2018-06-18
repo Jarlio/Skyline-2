@@ -1,5 +1,5 @@
 <div class="uk-container article-container">
-  <article class="uk-article article">
+  <article id="article" class="uk-article article">
 
     <h1 class="uk-article-title "><a class="uk-link-reset" href="/article/<%= @article.id %>"><%= @article.title %></a>
     </h1>
@@ -9,23 +9,61 @@
 
     <p><%= @article.intro %></p>
 
+    <% positions = [] # used to create position for new paragraphs %>
     <% @contents.each do |content| %>
-      <% if content.class == Paragraph %>
-        <% unless content.title.nil? %>
-          <h3 class="paragraph_title"><%= content.title %></h3>
-        <% end %>
-        <p><%= content.text %></p>
-      <% end %>
+
+      <div id="paragraph<%= content.id %>" class="paragraph-container">
+        <div id="paragraph-content<%= content.id %>" class="paragraph-content">
+          <% if content.class == Paragraph %>
+            <% unless content.title.nil? %>
+              <h3 class="paragraph_title"><%= content.title %></h3>
+            <% end %>
+            <p>
+              <%= content.text %>
+              <% if @article.user == current_user %>
+                | <%= link_to 'Delete', article_paragraph_path(@article.id, content.id), method: :delete %>
+                <!--to edit an already paragraph, the form from _paragraph.html.erb will be used
+                    this link will send a get request to the server for the edit.js.erb (ajax), the script will render
+                    the form-->
+                | <%= link_to 'Edit', edit_article_paragraph_path(@article, content), remote: true %>
+              <% end %>
+            </p>
+            <% positions << content.position %>
+          <% end %>
+        </div>
+      </div>
+
     <% end %>
 
   </article>
 
   <!--author articles control panel-->
+  <!--used to create new paragraph (to edit an already paragraph, the form from _paragraph.html.erb will be used) -->
   <% if @article.user == current_user %>
-    <div class="uk-container-expand article-buttons">
-      <button class="uk-button uk-button-primary">New paragraph</button>
-      <button class="uk-button uk-button-primary">New chart</button>
-      <button class="uk-button uk-button-primary">New Photo gallery</button>
+    <div class="article-form-container" id="new-paragraph">
+      <%#= form_with scope: :paragraph, controller: :paragraph, action: :create, method: :post, remote: false do |f| %>
+      <%= form_with(model: [@article, @article.paragraphs.build], local: true) do |f| %>
+        <%= f.text_field :title, class: 'uk-input', placeholder: 'Title of paragraph (optional, can be a subtitle of the article)' %>
+        <%= f.text_area :text, class: 'uk-textarea', placeholder: 'Content of paragraph' %>
+        <% if positions.length != 0 %>
+          <%= f.hidden_field :position, :value => positions.max + 1 %>
+        <% else %>
+          <%= f.hidden_field :position, :value => 1 %>
+        <% end %>
+        <div class="submit-button">
+          <button class="uk-button uk-button-primary">Submit</button>
+          <button type="button" id="cancel-para-btn" class="cancel-para-btn uk-button uk-button-primary">Cancel</button>
+        </div>
+      <% end %>
+    </div>
+
+    <div id="article-control-panel" class="uk-container-expand article-buttons">
+      <button id="paragraph-btn" class="uk-button uk-button-primary">New Paragraph</button>
+      <button id="chart-btn" class="uk-button uk-button-primary">New chart</button>
+      <button id="gallery-btn" class="uk-button uk-button-primary">New Photo gallery</button>
     </div>
   <% end %>
 </div>
+
+<!--scripts (only this page)-->
+<%= javascript_include_tag 'article' %>
