@@ -1,2 +1,13 @@
-var elem = $('#new-image-form-container'+ '<% @gallery.id %>')
-elem.html(elem.html() + '<%= j render @image %>')
+var elem = $('#new-image-form-container' + '<% @gallery.id %>')
+elem.html(elem.html() + '<%= j render @image %>').promise().done(function () {
+    $('.new-photo-link').hide('fast', function () {
+
+        $('#upload-image-form-btn').click(function () {
+            $('#image_input').click()
+        });
+
+        $('#image_input').on('change', function () {
+            $('#image_submit').click();
+        });
+    })
+});

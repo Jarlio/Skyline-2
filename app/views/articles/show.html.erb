@@ -46,22 +46,19 @@
               <p><%= content.description %><p>
             <% end %>
 
-            <% if @article.user == current_user %>
-              <%= link_to 'Delete gallery', article_gallery_path(@article.id, content.id), method: :delete %>
-            <% end %>
-
             <% positions << content.position %>
 
+            <% if @article.user == current_user %>
+              <div class="" id="new-image-form-container<% content.id %>">
+                <%= link_to 'Delete gallery', article_gallery_path(@article.id, content.id), method: :delete %> |
+                <%= link_to 'New photo', new_article_gallery_image_path(@article, content), remote: true, class: 'new-photo-link' %>
+              </div>
+            <% end %>
             <div class="uk-position-relative uk-visible-toggle uk-light uk-margin-auto-left uk-margin-auto-right" style="width: 95%" uk-slideshow>
-              <% if @article.user == current_user %>
-                <div id="new-image-form-container<% content.id %>">
-                  <%= link_to 'New photo', new_article_gallery_image_path(@article, content), remote: true, class: 'new-photo-link' %>
-                </div>
-              <% end %>
               <ul class="uk-slideshow-items" uk-lightbox="animation: slide">
                 <% content.images.each do |image| %>
                   <li>
-                    <img src="https://getuikit.com/docs/images/light.jpg" alt="" uk-cover>
+                    <%= image_tag(image.image_url, alt:'', class: 'uk-cover') %>
                   </li>
                 <% end %>
               </ul>
