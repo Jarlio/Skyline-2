@@ -8,4 +8,5 @@ class Article < ApplicationRecord
 
   belongs_to :user
   has_many :paragraphs
+  has_many :galleries
 end

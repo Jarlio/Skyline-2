@@ -1,3 +1,5 @@
+$('div.paragraph_form').remove();
+$('div.paragraph-content').show()
 $('div#paragraph-content<%= @paragraph.id %>').hide("fast", function () {
     var elem = $('div#paragraph<%= @paragraph.id %>')
     elem.html(elem.html() + '<%= j render @paragraph %>')

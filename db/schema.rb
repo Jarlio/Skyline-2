@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180613085430) do
+ActiveRecord::Schema.define(version: 20180620145735) do
 
   create_table "articles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "title"
@@ -21,10 +21,29 @@ ActiveRecord::Schema.define(version: 20180613085430) do
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
+  create_table "galleries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "position"
+    t.bigint "article_id", null: false
+    t.index ["article_id"], name: "index_galleries_on_article_id"
+  end
+
+  create_table "images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string "image", null: false
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "gallery_id", null: false
+    t.index ["gallery_id"], name: "index_images_on_gallery_id"
+  end
+
   create_table "paragraphs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "title"
-    t.text "text"
-    t.integer "position"
+    t.text "text", null: false
+    t.integer "position", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "article_id", null: false
@@ -57,5 +76,7 @@ ActiveRecord::Schema.define(version: 20180613085430) do
   end
 
   add_foreign_key "articles", "users"
+  add_foreign_key "galleries", "articles"
+  add_foreign_key "images", "galleries"
   add_foreign_key "paragraphs", "articles"
 end

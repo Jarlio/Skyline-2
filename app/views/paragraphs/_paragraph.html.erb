@@ -11,14 +11,12 @@
 </div>
 
 <script>
+    // functionality for cancel button
     var id = <%= @paragraph.id %>;
-    $('button.cancel-para-form-btn').on('click', function(){
-        $('div.paragraph_form').remove();
-        $('div.paragraph-content').show()
+    $('button.cancel-para-form-btn').on('click', function () {
+        $('div.paragraph_form').hide("fast", function () {
+            $('div.paragraph_form').remove();
+            $('div.paragraph-content').show();
+        });
     });
 </script>
-
-<!--
-cancel-para-btn: used for css
-cancel-para-form-btn: used for functionality, check article.js
--->

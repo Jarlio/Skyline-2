@@ -3,3 +3,14 @@
 // $('div#article-control-panel').hide("fast", function () {
 //     $('div#article-control-panel').show()
 // })
+$('button#paragraph-btn').click(function () {
+    $('div#article-control-panel').hide("fast", function () {
+        $('div#new-paragraph').show();
+    });
+});
+
+$('button#cancel-para-btn').click(function () {
+    $('div#new-paragraph').hide("fast", function () {
+        $('div#article-control-panel').show();
+    });
+})

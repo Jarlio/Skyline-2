@@ -10,11 +10,12 @@
     <p><%= @article.intro %></p>
 
     <% positions = [] # used to create position for new paragraphs %>
+
     <% @contents.each do |content| %>
 
-      <div id="paragraph<%= content.id %>" class="paragraph-container">
-        <div id="paragraph-content<%= content.id %>" class="paragraph-content">
-          <% if content.class == Paragraph %>
+      <% if content.class == Paragraph %>
+        <div id="paragraph<%= content.id %>" class="paragraph-container">
+          <div id="paragraph-content<%= content.id %>" class="paragraph-content">
             <% unless content.title.nil? %>
               <h3 class="paragraph_title"><%= content.title %></h3>
             <% end %>
@@ -29,9 +30,49 @@
               <% end %>
             </p>
             <% positions << content.position %>
-          <% end %>
+          </div>
         </div>
-      </div>
+
+      <% elsif content.class == Gallery %>
+
+        <div id="gallery<%= content.id %>" class="gallery-container">
+          <div id="gallery-content<%= content.id %>" class="gallery-content">
+
+            <% unless content.title.nil? %>
+              <h3 class="gallery_title"><%= content.title %></h3>
+            <% end %>
+
+            <% unless content.description.nil? %>
+              <p><%= content.description %><p>
+            <% end %>
+
+            <% if @article.user == current_user %>
+              <%= link_to 'Delete gallery', article_gallery_path(@article.id, content.id), method: :delete %>
+            <% end %>
+
+            <% positions << content.position %>
+
+            <div class="uk-position-relative uk-visible-toggle uk-light uk-margin-auto-left uk-margin-auto-right" style="width: 95%" uk-slideshow>
+              <% if @article.user == current_user %>
+                <div id="new-image-form-container<% content.id %>">
+                  <%= link_to 'New photo', new_article_gallery_image_path(@article, content), remote: true, class: 'new-photo-link' %>
+                </div>
+              <% end %>
+              <ul class="uk-slideshow-items" uk-lightbox="animation: slide">
+                <% content.images.each do |image| %>
+                  <li>
+                    <img src="https://getuikit.com/docs/images/light.jpg" alt="" uk-cover>
+                  </li>
+                <% end %>
+              </ul>
+
+              <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+              <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+
+            </div>
+          </div>
+        </div>
+      <% end %>
 
     <% end %>
 
@@ -41,7 +82,6 @@
   <!--used to create new paragraph (to edit an already paragraph, the form from _paragraph.html.erb will be used) -->
   <% if @article.user == current_user %>
     <div class="article-form-container" id="new-paragraph">
-      <%#= form_with scope: :paragraph, controller: :paragraph, action: :create, method: :post, remote: false do |f| %>
       <%= form_with(model: [@article, @article.paragraphs.build], local: true) do |f| %>
         <%= f.text_field :title, class: 'uk-input', placeholder: 'Title of paragraph (optional, can be a subtitle of the article)' %>
         <%= f.text_area :text, class: 'uk-textarea', placeholder: 'Content of paragraph' %>
@@ -57,13 +97,34 @@
       <% end %>
     </div>
 
+    <div class="article-form-container" id="new-gallery">
+      <%= form_with(model: [@article, @article.galleries.build], local: true) do |f| %>
+        <%= f.text_field :title, class: 'uk-input', placeholder: 'Title of gallery (optional, can be a subtitle of the article)' %>
+        <%= f.text_area :description, class: 'uk-textarea', placeholder: 'Description of gallery (optional)' %>
+        <% if positions.length != 0 %>
+          <%= f.hidden_field :position, :value => positions.max + 1 %>
+        <% else %>
+          <%= f.hidden_field :position, :value => 1 %>
+        <% end %>
+        <div class="submit-button">
+          <button class="uk-button uk-button-primary">Submit</button>
+          <button type="button" id="cancel-gal-btn" class="cancel-gal-btn uk-button uk-button-primary">Cancel</button>
+        </div>
+      <% end %>
+    </div>
+
     <div id="article-control-panel" class="uk-container-expand article-buttons">
-      <button id="paragraph-btn" class="uk-button uk-button-primary">New Paragraph</button>
-      <button id="chart-btn" class="uk-button uk-button-primary">New chart</button>
-      <button id="gallery-btn" class="uk-button uk-button-primary">New Photo gallery</button>
+      <button id="paragraph-btn" uk-tooltip="Add a new paragraph to article" class="uk-button uk-button-primary">New Paragraph
+      </button>
+      <button id="chart-btn" uk-tooltip="Add a new chart or graph to article, good use to visual represent statistics" class="uk-button uk-button-primary">New
+        chart
+      </button>
+      <button id="gallery-btn" uk-tooltip="Add a new gallery of images" class="uk-button uk-button-primary">New Photo gallery</button>
     </div>
   <% end %>
 </div>
 
 <!--scripts (only this page)-->
 <%= javascript_include_tag 'article' %>
+<%= javascript_include_tag 'paragraphs' %>
+<%= javascript_include_tag 'galleries' %>

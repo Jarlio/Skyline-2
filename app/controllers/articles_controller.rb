@@ -7,6 +7,7 @@ class ArticlesController < ApplicationController
 
     @contents = []
     @contents += @article.paragraphs
+    @contents += @article.galleries
     @contents.sort_by! {|content| content.position }
   end
 
