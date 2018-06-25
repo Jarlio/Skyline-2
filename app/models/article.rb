@@ -7,6 +7,6 @@ class Article < ApplicationRecord
   validates :user_id, presence: true
 
   belongs_to :user
-  has_many :paragraphs
-  has_many :galleries
+  has_many :paragraphs, dependent: :delete_all
+  has_many :galleries, dependent: :delete_all
 end

@@ -22,11 +22,11 @@
             <p>
               <%= content.text %>
               <% if @article.user == current_user %>
-                | <%= link_to 'Delete', article_paragraph_path(@article.id, content.id), method: :delete %>
+                <%= link_to 'Delete', article_paragraph_path(@article.id, content.id), method: :delete, class: 'container-button-admin' %>
                 <!--to edit an already paragraph, the form from _paragraph.html.erb will be used
                     this link will send a get request to the server for the edit.js.erb (ajax), the script will render
                     the form-->
-                | <%= link_to 'Edit', edit_article_paragraph_path(@article, content), remote: true %>
+                <%= link_to 'Edit', edit_article_paragraph_path(@article, content), remote: true, class: 'container-button-admin' %>
               <% end %>
             </p>
             <% positions << content.position %>
@@ -43,28 +43,46 @@
             <% end %>
 
             <% unless content.description.nil? %>
-              <p><%= content.description %><p>
+              <p><%= content.description %>
+              <p>
             <% end %>
 
             <% positions << content.position %>
 
+            <button id="toggle-for-gallery<%= content.position %>" uk-toggle="target: #gallery-modal<%= content.position %>" class="content-button" type="button">See
+              gallery
+            </button>
             <% if @article.user == current_user %>
-              <div class="" id="new-image-form-container<% content.id %>">
-                <%= link_to 'Delete gallery', article_gallery_path(@article.id, content.id), method: :delete %> |
-                <%= link_to 'New photo', new_article_gallery_image_path(@article, content), remote: true, class: 'new-photo-link' %>
+              <div id="new-image-form-container<%= content.id %>">
+                <%= link_to 'Delete gallery', article_gallery_path(@article.id, content.id), method: :delete, class: 'container-button-admin' %>
+                <%= link_to 'New photo', new_article_gallery_image_path(@article, content), remote: true, id: ('new-photo-link' + +content.id.to_s), class: 'container-button-admin' %>
               </div>
             <% end %>
-            <div class="uk-position-relative uk-visible-toggle uk-light uk-margin-auto-left uk-margin-auto-right" style="width: 95%" uk-slideshow>
+
+            <div id="gallery-modal<%= content.position %>" uk-modal>
+              <div class="uk-child-width-1-3@m" uk-grid uk-lightbox="animation: slide" id="gallery-for-modal<%= content.id %>" autofocus>
+                <% content.images.each do |image| %>
+                  <div>
+                    <a class="uk-inline" href="<%= image.image_url %>" data-caption="Caption 1">
+                      <img src="<%= image.image_url %>" alt="">
+                    </a>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="uk-position-relative uk-visible-toggle uk-light slideshow-container" uk-slideshow>
+              <!-- toggle modal for gallery-->
+
               <ul class="uk-slideshow-items" uk-lightbox="animation: slide">
                 <% content.images.each do |image| %>
-                  <li>
-                    <%= image_tag(image.image_url, alt:'', class: 'uk-cover') %>
-                  </li>
+                  <div class='bounding-box' style="background-image: url(<%= image.image_url %>);">
+                  </div>
                 <% end %>
               </ul>
 
-              <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
-              <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+              <a style="color: black;" class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+              <a style="color: black;" class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
 
             </div>
           </div>
@@ -74,6 +92,9 @@
     <% end %>
 
   </article>
+
+  <!--modal for gallery-->
+
 
   <!--author articles control panel-->
   <!--used to create new paragraph (to edit an already paragraph, the form from _paragraph.html.erb will be used) -->
@@ -111,12 +132,15 @@
     </div>
 
     <div id="article-control-panel" class="uk-container-expand article-buttons">
-      <button id="paragraph-btn" uk-tooltip="Add a new paragraph to article" class="uk-button uk-button-primary">New Paragraph
+      <button id="paragraph-btn" uk-tooltip="Add a new paragraph to article" class="uk-button uk-button-primary">New
+        Paragraph
       </button>
       <button id="chart-btn" uk-tooltip="Add a new chart or graph to article, good use to visual represent statistics" class="uk-button uk-button-primary">New
         chart
       </button>
-      <button id="gallery-btn" uk-tooltip="Add a new gallery of images" class="uk-button uk-button-primary">New Photo gallery</button>
+      <button id="gallery-btn" uk-tooltip="Add a new gallery of images" class="uk-button uk-button-primary">New Photo
+        gallery
+      </button>
     </div>
   <% end %>
 </div>

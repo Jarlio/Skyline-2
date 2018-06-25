@@ -11,4 +11,4 @@ $('button#cancel-gal-btn').click(function () {
     $('div#new-gallery').hide("fast", function () {
         $('div#article-control-panel').show();
     });
-})
+});

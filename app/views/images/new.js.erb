@@ -1,13 +1,16 @@
-var elem = $('#new-image-form-container' + '<% @gallery.id %>')
+var elem = $('#new-image-form-container' + '<%= @gallery.id %>')
+
 elem.html(elem.html() + '<%= j render @image %>').promise().done(function () {
-    $('.new-photo-link').hide('fast', function () {
+    $('#new-photo-link' + '<%= @gallery.id %>').hide('fast', function () {
 
-        $('#upload-image-form-btn').click(function () {
-            $('#image_input').click()
+        console.log('I\'ve been here');
+
+        $('#upload-image-form-btn' + '<%= @gallery.id %>').click(function () {
+            $('#image_input' + '<%= @gallery.id %>').click();
         });
 
-        $('#image_input').on('change', function () {
-            $('#image_submit').click();
+        $('#image_input' + '<%= @gallery.id %>').on('change', function () {
+            $('#image_submit' + '<%= @gallery.id %>').click();
         });
-    })
+    });
 });

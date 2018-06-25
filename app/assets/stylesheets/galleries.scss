@@ -23,4 +23,18 @@ div.article-container {
       height: 200px;
     }
   }
+
+  div.slideshow-container{
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  div.bounding-box {
+    // don't try background: no-repeat center
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+
 }

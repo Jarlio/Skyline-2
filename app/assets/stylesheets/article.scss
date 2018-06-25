@@ -44,4 +44,84 @@ div.article-container {
       align-items: center;
     }
   }
+
+  // the buttons that are use for the functionality of the content
+  .content-button {
+    border: none;
+    display: inline-block;
+    padding: 0 10px;
+    line-height: 1.5;
+    font-size: 12px;
+    vertical-align: middle;
+    white-space: nowrap;
+    border-radius: 2px;
+    text-transform: uppercase;
+    background-color: #1e87f0;
+    color: #fff;
+    cursor: pointer;
+    &:focus {
+      outline: 0;
+    }
+
+    &:hover{
+      text-decoration: none;
+    }
+
+    &:active{
+      text-decoration: none;
+    }
+  }
+
+  // same as above, but only buttons available for admin
+  .container-button-admin {
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    padding: 0 10px;
+    line-height: 1.5;
+    font-size: 12px;
+    vertical-align: middle;
+    white-space: nowrap;
+    border-radius: 2px;
+    text-transform: uppercase;
+    background-color: #f0506e;
+    color: #fff;
+    &:focus {
+      outline: 0;
+    }
+
+    &:hover{
+      text-decoration: none;
+    }
+
+    &:active{
+      text-decoration: none;
+    }
+  }
+
+  .container-button-ready {
+    cursor: pointer;
+    border: none;
+    display: inline-block;
+    padding: 0 10px;
+    line-height: 1.5;
+    font-size: 12px;
+    vertical-align: middle;
+    white-space: nowrap;
+    border-radius: 2px;
+    text-transform: uppercase;
+    background-color: #32d296;
+    color: #fff;
+    &:focus {
+      outline: 0;
+    }
+
+    &:hover{
+      text-decoration: none;
+    }
+
+    &:active{
+      text-decoration: none;
+    }
+  }
 }

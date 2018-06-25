@@ -1,8 +1,8 @@
 <!--add new photo-->
-<a id="upload-image-form-btn">Select the image</a>
+<a id="upload-image-form-btn<%= @gallery.id %>" class="container-button-ready">Select the image</a>
 <div id="upload-image-form-container" class="uk-container" style="display: none">
   <%= form_with(model: [@article, @gallery, @gallery.images.build], local: true) do |f| %>
-    <%= f.file_field :image, id: 'image_input' %>
-    <%= f.submit 'Upload', id: 'image_submit' %>
+    <%= f.file_field :image, id: 'image_input' ++ @gallery.id.to_s %>
+    <%= f.submit 'Upload', id: 'image_submit' ++ @gallery.id.to_s %>
   <% end %>
 </div>
