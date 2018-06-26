@@ -1,0 +1,45 @@
+// Place all the styles related to the Tags controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+div.profile-tags {
+  width: 100%;
+  display: inline-flex;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+.tag {
+  color: #e6e6e6;
+  background: #0e6dcd;
+  padding: 5px 10px;
+  margin: 3px;
+  font-size: 0.7em;
+  border-radius: 15px;
+  text-align: center;
+  height: 16px;
+}
+
+.tag-icon {
+  padding: 5px 10px;
+  color: greenyellow;
+}
+
+div.tag-container {
+  width: 100%;
+}
+
+div.tags-container {
+  .tag-input-name {
+    width: 83%;
+  }
+
+  .new-tag-btn{
+    width: 15%;
+  }
+
+  .tag-icon {
+    float: right;
+  }
+}
+

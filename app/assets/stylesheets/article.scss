@@ -59,16 +59,21 @@ div.article-container {
     background-color: #1e87f0;
     color: #fff;
     cursor: pointer;
+    margin-left: 3px;
+
     &:focus {
       outline: 0;
+      color: white;
     }
 
     &:hover{
       text-decoration: none;
+      color: white;
     }
 
     &:active{
       text-decoration: none;
+      color: white;
     }
   }
 
@@ -86,16 +91,21 @@ div.article-container {
     text-transform: uppercase;
     background-color: #f0506e;
     color: #fff;
+    margin-left: 3px;
+
     &:focus {
       outline: 0;
+      color: white;
     }
 
     &:hover{
       text-decoration: none;
+      color: white;
     }
 
     &:active{
       text-decoration: none;
+      color: white;
     }
   }
 
@@ -112,16 +122,20 @@ div.article-container {
     text-transform: uppercase;
     background-color: #32d296;
     color: #fff;
+    margin-left: 3px;
     &:focus {
       outline: 0;
+      color: white;
     }
 
     &:hover{
       text-decoration: none;
+      color: white;
     }
 
     &:active{
       text-decoration: none;
+      color: white;
     }
   }
 }

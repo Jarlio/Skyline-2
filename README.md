@@ -35,3 +35,9 @@ Regular todo
     * navbar
     * article
     * profile
+    
+    
+Known bugs:
+* No ajax functionality
+* User can add tags with the same name
+* User can add tags with nil strings

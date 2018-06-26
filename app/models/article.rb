@@ -9,4 +9,5 @@ class Article < ApplicationRecord
   belongs_to :user
   has_many :paragraphs, dependent: :delete_all
   has_many :galleries, dependent: :delete_all
+  has_many :tags, dependent: :delete_all
 end

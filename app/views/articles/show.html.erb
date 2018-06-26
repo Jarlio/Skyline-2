@@ -4,8 +4,16 @@
     <h1 class="uk-article-title "><a class="uk-link-reset" href="/article/<%= @article.id %>"><%= @article.title %></a>
     </h1>
 
+    <div class="profile-tags">
+      <% @article.tags.each do |tag| %>
+        <div class="tag"><%= tag.name %></div>
+      <% end %>
+    </div>
+
     <p class="uk-article-meta">Written by <a href="/user/<%= @article.user.username %>"><%= @article.user.name %></a>
-      on <%= @article.created_at %></p>
+      on <%= @article.created_at %>
+      <a href="#offcanvas-usage" class="container-button-ready" uk-tooltip="Update your tags" uk-toggle>Search
+        settings</a></p>
 
     <p><%= @article.intro %></p>
 
@@ -52,6 +60,7 @@
             <button id="toggle-for-gallery<%= content.position %>" uk-toggle="target: #gallery-modal<%= content.position %>" class="content-button" type="button">See
               gallery
             </button>
+            <!-- the process to add a new photo works the same as edit paragraph, see above -->
             <% if @article.user == current_user %>
               <div id="new-image-form-container<%= content.id %>">
                 <%= link_to 'Delete gallery', article_gallery_path(@article.id, content.id), method: :delete, class: 'container-button-admin' %>
@@ -60,10 +69,14 @@
             <% end %>
 
             <div id="gallery-modal<%= content.position %>" uk-modal>
-              <div class="uk-child-width-1-3@m" uk-grid uk-lightbox="animation: slide" id="gallery-for-modal<%= content.id %>" autofocus>
+              <div class="uk-child-width-1-3@m" uk-grid uk-lightbox="animation: slide" id="gallery-for-modal<%= content.id %>">
                 <% content.images.each do |image| %>
                   <div>
-                    <a class="uk-inline" href="<%= image.image_url %>" data-caption="Caption 1">
+                    <a class="uk-inline" href="<%= image.image_url %>" data-caption="<%= unless image.title.nil? then
+                                                                                           image.title
+                                                                                         else
+                                                                                           'NO TITLE'
+                                                                                         end %>">
                       <img src="<%= image.image_url %>" alt="">
                     </a>
                   </div>
@@ -92,9 +105,6 @@
     <% end %>
 
   </article>
-
-  <!--modal for gallery-->
-
 
   <!--author articles control panel-->
   <!--used to create new paragraph (to edit an already paragraph, the form from _paragraph.html.erb will be used) -->
@@ -143,6 +153,30 @@
       </button>
     </div>
   <% end %>
+</div>
+
+<div id="offcanvas-usage" uk-offcanvas>
+  <div class="uk-offcanvas-bar tags-container">
+
+    <button class="uk-offcanvas-close" type="button" uk-close></button>
+
+    <h3>Tags</h3>
+
+    <div class="profile-tags">
+      <% @article.tags.each do |tag| %>
+        <div style="width: 100%">
+          <span class="tag"><%= tag.name %></span>
+          <a style="float: right" class="container-button-admin" rel="nofollow" data-method="delete" class="tag-icon"  href="/articles/<%= @article.id %>/tags/<%= tag.id %>"><span uk-icon="icon: trash"></span></a>
+        </div>
+      <% end %>
+    </div>
+
+    <%= form_with(model: [@article, @article.tags.build], local: true, remote: true) do |f| %>
+      <%= f.text_field :name, class: 'uk-input tag-input-name', placeholder: 'Tag name' %>
+      <button class="uk-input new-tag-btn"><span uk-icon="icon: check"></span></button>
+    <% end %>
+
+  </div>
 </div>
 
 <!--scripts (only this page)-->

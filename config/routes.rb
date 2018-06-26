@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :articles, only: %i[show update destroy create] do
     resources :paragraphs, only: %i[create edit update destroy]
+    resources :tags, only: %i[create destroy]
     resources :galleries, only: %i[create edit update destroy] do
       resources :images, only: %i[new create destroy]
     end

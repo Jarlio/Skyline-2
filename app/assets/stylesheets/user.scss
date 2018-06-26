@@ -31,24 +31,6 @@ div.profile-picture {
   height: 200px;
 }
 
-div.profile-categories {
-  width: 100%;
-  display: inline-flex;
-  flex-wrap: wrap;
-  padding: 10px;
-}
-
-div.category {
-  color: #e6e6e6;
-  background: #0e6dcd;
-  padding: 5px 10px;
-  margin: 3px;
-  font-size: 0.7em;
-  border-radius: 15px;
-  text-align: center;
-  height: 16px;
-}
-
 /* --- profile content --- */
 div.profile-content {
   width: calc(100% - 550px);
