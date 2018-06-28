@@ -1,0 +1,12 @@
+var span = $('<span class="tag"><span>').text('<%= @tag.name %>');
+$("#article-tags").append(span);
+
+var tag_container = $('<div class="tag-container"></div>');
+var span = $('<span class="tag"><span>').text('<%= @tag.name %>');
+var del_link = $('<a style="float: right" class="container-button-admin" rel="nofollow" data-method="delete" class="tag-icon" href="/articles/<%= @article.id %>/tags/<%= @tag.id %>"></a>');
+var icon = $('<span uk-icon="icon: trash"></span>');
+tag_container.append(span);
+del_link.append(icon);
+tag_container.append(del_link);
+
+$("#control-panel-tags").append(tag_container);

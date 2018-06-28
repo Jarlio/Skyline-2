@@ -10,17 +10,19 @@ TODO:
 2. Articles
     * Database - done
     * Create - done
-    * Delete
+    * Delete - done
     * Edit
     * Creator
         * Charts
-        * Tables
-        * Paragraphs
+        * Paragraphs - done
         * photo galleries
+            * add photo - done
+            * delete gallery - done
+            * delete photo
         * code
-    * Show and editor
     * Subscribe system
     * Rating system
+    * tag system - done
 3. Admin Page
 
 Regular todo
@@ -31,13 +33,17 @@ Regular todo
 * New fonts
 * Search users and articles
 * Make pages adaptable at any resolution
-    * Homepage
+    * Homepage - done
     * navbar
-    * article
-    * profile
+    * article - done
+    * profile - done
     
     
 Known bugs:
 * No ajax functionality
+    * Tags - done
+    * Search
+    * Image add
+    * Image delete
 * User can add tags with the same name
 * User can add tags with nil strings

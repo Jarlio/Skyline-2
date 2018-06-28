@@ -25,21 +25,32 @@ div.profile-tags {
   color: greenyellow;
 }
 
-div.tag-container {
-  width: 100%;
-}
 
 div.tags-container {
+  .tag-container {
+    width: 100%;
+  }
+
   .tag-input-name {
     width: 83%;
   }
 
-  .new-tag-btn{
-    width: 15%;
+  .new-tag-btn {
+    width: 100%;
+    margin-left: 5%;
   }
 
   .tag-icon {
     float: right;
+  }
+
+  .create-tag-btn{
+    width: 15%;
+  }
+
+  .form-tag{
+    margin-left: 5%;
+    width: 100%;
   }
 }
 

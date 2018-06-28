@@ -21,12 +21,9 @@
         <%= image_tag(@user.avatar_url) if @user.avatar? %>
       </div>
       <div class="profile-tags">
-        <div class="tag">Ruby on rails</div>
-        <div class="tag">Operator pe combina</div>
-        <div class="tag">Something else</div>
-        <div class="tag">Anime grils</div>
-        <div class="tag">Coh2</div>
-        <div class="tag">Maestru deceptilor</div>
+        <% @user.tags.uniq.each do |tag| %>
+          <div class="tag"><%= tag.name %></div>
+        <% end %>
       </div>
     </div>
   </div>

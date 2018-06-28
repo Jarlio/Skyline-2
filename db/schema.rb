@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180626141413) do
+ActiveRecord::Schema.define(version: 20180628042407) do
+
+  create_table "Articles_Tags", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.bigint "Article_id", null: false
+    t.bigint "Tag_id", null: false
+    t.index ["Article_id", "Tag_id"], name: "index_Articles_Tags_on_article_id_and_tag_id"
+  end
 
   create_table "articles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "title"
@@ -51,11 +57,9 @@ ActiveRecord::Schema.define(version: 20180626141413) do
   end
 
   create_table "tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "article_id", null: false
-    t.index ["article_id"], name: "index_tags_on_article_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -87,5 +91,4 @@ ActiveRecord::Schema.define(version: 20180626141413) do
   add_foreign_key "galleries", "articles"
   add_foreign_key "images", "galleries"
   add_foreign_key "paragraphs", "articles"
-  add_foreign_key "tags", "articles"
 end
