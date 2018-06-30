@@ -4,6 +4,11 @@
     <!-- profile background -->
     <div class="uk-cover-container uk-height-medium profile-background">
       <%= image_tag(@user.background_url, class: 'uk-cover') if @user.background? %>
+      <% unless @user.background? %>
+        <p class="profile-cpn-text">You don't have a background photo yet. Upload one from
+          <span uk-toggle="target: #control-panel" type="button" uk-icon="cog" class="profile-cpn-button"></span>
+        </p>
+      <% end %>
     </div>
 
     <!-- profile card -->
@@ -19,6 +24,12 @@
       </div>
       <div class="uk-cover-container uk-height-medium profile-picture">
         <%= image_tag(@user.avatar_url) if @user.avatar? %>
+        <% unless @user.avatar? %>
+          <p class="profile-cpn-text">
+            You don't have a profile photo yet. Upload one from
+            <span uk-toggle="target: #control-panel" type="button" uk-icon="cog" class="profile-cpn-button"></span>
+          </p>
+        <% end %>
       </div>
       <div class="profile-tags">
         <% @user.tags.uniq.each do |tag| %>
@@ -38,6 +49,12 @@
     <div id="my-id" class="uk-switcher uk-margin">
       <div class="articles uk-padding-small">
 
+        <% if @user.articles.length == 0 %>
+          <p class="profile-cpn-text">
+            You don't have any articles. Create one from
+            <span uk-toggle="target: #control-panel" type="button" uk-icon="cog" class="profile-cpn-button"></span>
+          </p>
+        <% end %>
         <!--iterate over user articles-->
         <% @user.articles.each do |article| %>
           <article class="uk-article">

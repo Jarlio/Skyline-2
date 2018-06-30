@@ -10,6 +10,10 @@ div.profile-header {
 /* --- profile background--- */
 div.profile-background {
   height: 300px;
+  p.profile-cpn-text {
+    margin: 5% 40%;
+    text-align: center;
+  }
 }
 
 /* --- profile card --- */
@@ -29,6 +33,11 @@ div.profile-card-header {
 
 div.profile-picture {
   height: 200px;
+  .profile-cpn-text{
+    width: 150px;
+    margin: 20% 70px;
+    text-align: center;
+  }
 }
 
 /* --- profile content --- */
