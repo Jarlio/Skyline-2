@@ -1,4 +1,4 @@
 <%= form_with model: @tag, url: article_tags_url(@article), method: :post, remote: true, class: 'form-tag' do |f| %>
-  <%= f.text_field :name, class: 'uk-input tag-input-name', placeholder: 'Tag name' %>
+  <%= f.text_field :name, class: 'uk-input tag-input-name', placeholder: 'Tag name', :autocomplete => :off %>
   <button class="uk-input create-tag-btn"><span uk-icon="icon: check"></span></button>
 <% end %>

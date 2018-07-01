@@ -17,7 +17,9 @@ class TagsController < ApplicationController
 
       @article.tags << @tag
     else
-      @tag = @article.tags.create(tag_params)
+      tag_params_temp = tag_params
+      tag_params_temp[:name].downcase!
+      @tag = @article.tags.create(tag_params_temp)
     end
 
     respond_to do |format|
