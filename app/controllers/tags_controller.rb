@@ -5,8 +5,10 @@ class TagsController < ApplicationController
   end
 
   def create
+    tag_params_temp = tag_params
+    tag_params_temp[:name].downcase!
     @article = Article.find(params[:article_id])
-    @tag = Tag.find_by(name: tag_params[:name])
+    @tag = Tag.find_by(name: tag_params_temp[:name])
     unless @tag.nil?
       if @article.tags.include? @tag
         return respond_to do |format|
@@ -17,8 +19,6 @@ class TagsController < ApplicationController
 
       @article.tags << @tag
     else
-      tag_params_temp = tag_params
-      tag_params_temp[:name].downcase!
       @tag = @article.tags.create(tag_params_temp)
     end
 
