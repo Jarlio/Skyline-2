@@ -11,38 +11,56 @@
 <body>
 
 <!--navbar-->
-<nav class="uk-navbar-container" uk-navbar>
-  <div class="uk-navbar-left">
-    <a class="uk-navbar-item uk-logo" href="/">Skyline</a>
-    <div class="uk-margin">
-      <div class="uk-search uk-search-default search">
-        <span class="uk-search-icon-flip" uk-search-icon></span>
-        <input class="uk-search-input" type="search" placeholder="Search...">
+<nav class="jar-navbar uk-container-expand">
+  <div class="jar-nav-container jav-nav-left">
+    <div class="jar-nav-logo">
+      Skyline
+    </div>
+
+    <div class="jar-nav-item">
+      <div class="uk-search uk-search-default jar-search">
+        <a href="" uk-search-icon></a>
+        <input class="uk-search-input search_input" id="search_input" type="search" placeholder="Search...">
+        <div class="jar-search-results uk-container" id="jar-search-results"></div>
       </div>
+    </div>
+
+    <div class="jar-nav-item">
+      <select class="uk-select search-options" id="search-options" style="width: 200px">
+        <option value="users">Users</option>
+        <option value="tags">Article by tags</option>
+        <option value="titles">Article by title</option>
+      </select>
     </div>
   </div>
 
-  <div class="uk-navbar-right">
-    <ul class="uk-navbar-nav">
-      <% if user_signed_in? %>
-        <li>
-          <a href="#">Settings</a>
-          <div class="uk-navbar-dropdown">
-            <ul class="uk-nav uk-navbar-dropdown-nav">
-              <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
-              <li><%= link_to 'My Profile', user_profile_url(current_user.username)%></li>
-              <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
-            </ul>
-          </div>
-        </li>
-      <% else %>
-        <li><%= link_to "Sign up", new_user_registration_path %></li>
-        <li><%= link_to "Login", new_user_session_path %></li>
-      <% end %>
-    </ul>
+
+  <div class="jar-nav-container jav-nav-right">
+    <% if user_signed_in? %>
+      <div class="jar-nav-item">
+        <p>Welcome <%= link_to current_user.name, user_profile_url(current_user.username) %></p>
+      </div>
+    <% end %>
+
+    <% if user_signed_in? %>
+      <div class="jar-nav-item">
+        <p class="jar-nav-settings">Settings</p>
+        <div uk-dropdown>
+          <ul class="uk-nav uk-navbar-dropdown-nav">
+            <li><%= link_to 'Account Settings', edit_user_registration_path %></li>
+            <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+          </ul>
+        </div>
+      </div>
+    <% else %>
+      <div class="jar-nav-item"><%= link_to "Sign up", new_user_registration_path %></div>
+      <div class="jar-nav-item"><%= link_to "Login", new_user_session_path %></div>
+    <% end %>
 
   </div>
 </nav>
+
+<%= javascript_include_tag 'search' %>
 
 <%= yield %>
 </body>

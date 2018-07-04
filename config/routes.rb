@@ -12,6 +12,11 @@ Rails.application.routes.draw do
     end
   end
 
+  # search functionality
+  get '/search_articles_by_tags', to: "articles#search_tag"
+  get '/search_articles_by_title', to: "articles#search_title"
+  get '/search_user', to: "user#search_user"
+
   get '/error/:message', to: 'error#show', as: 'error'
 
   get '/user/:username', to: 'user#show', as: 'user_profile'

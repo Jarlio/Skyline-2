@@ -16,3 +16,4 @@ Rails.application.config.assets.precompile += %w[user.js]
 Rails.application.config.assets.precompile += %w(article.js)
 Rails.application.config.assets.precompile += %w( paragraphs.js )
 Rails.application.config.assets.precompile += %w( galleries.js )
+Rails.application.config.assets.precompile += %w( search.js )

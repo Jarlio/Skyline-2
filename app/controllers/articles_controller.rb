@@ -2,6 +2,16 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!
 
+  def search_tag
+    @articles = Article.joins(:tags).where("name LIKE ? ", "%#{params[:name]}%")
+    render :json => @articles
+  end
+
+  def search_title
+    @articles = Article.where("title LIKE ?", "%#{params[:title]}%")
+    render :json => @articles
+  end
+
   def show
     @article = Article.find(params[:id])
 

@@ -3,6 +3,11 @@
 class UserController < ApplicationController
   before_action :authenticate_user!
 
+  def search_user
+    @users = User.where("name LIKE ?", "%#{params[:name]}%")
+    render :json => @users
+  end
+
   def update
     @user = current_user
     if @user.update user_params
