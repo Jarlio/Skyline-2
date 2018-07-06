@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     end
   end
 
+
+
   # search functionality
   get '/search_articles_by_tags', to: "articles#search_tag"
   get '/search_articles_by_title', to: "articles#search_title"
