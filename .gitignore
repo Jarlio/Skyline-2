@@ -38,6 +38,3 @@ config/secrets.yml
 public/uploads
 
 .idea
-
-Gemfile.lock
-
