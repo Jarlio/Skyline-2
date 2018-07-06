@@ -203,7 +203,7 @@ GEM
       nokogiri (~> 1.8)
 
 PLATFORMS
-  ruby '2.5.1'
+  ruby
 
 DEPENDENCIES
   byebug
