@@ -1,5 +1,5 @@
 function search_by_tag() {
-    $.getJSON("http://localhost:3000/search_articles_by_tags?name=" + $("#search_input").val(), function (data) {
+    $.getJSON("/search_articles_by_tags?name=" + $("#search_input").val(), function (data) {
         $('#jar-search-results').html("");
         $.each(data, function (key, value) {
 
@@ -25,7 +25,7 @@ function search_by_tag() {
 };
 
 function search_by_title(){
-    $.getJSON("http://localhost:3000/search_articles_by_title?title=" + $("#search_input").val(), function (data) {
+    $.getJSON("/search_articles_by_title?title=" + $("#search_input").val(), function (data) {
         $('#jar-search-results').html("");
         $.each(data, function (key, value) {
 
@@ -52,7 +52,7 @@ function search_by_title(){
 }
 
 function search_user(){
-    $.getJSON("http://localhost:3000/search_user?name=" + $("#search_input").val(), function (data) {
+    $.getJSON("/search_user?name=" + $("#search_input").val(), function (data) {
         $('#jar-search-results').html("");
         $.each(data, function (key, value) {
 
