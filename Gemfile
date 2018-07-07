@@ -62,3 +62,7 @@ gem 'devise'
 
 # image upload functionality
 gem 'carrierwave'
+
+group :production do
+  gem 'rails_12factor'
+end
