@@ -114,3 +114,4 @@ $("#search_input").keyup(function () {
         $('#jar-search-results').hide();
     }
 })
+;
