@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
   before_action :authenticate_user!
 
   def search_tag
-    @articles = Article.joins(:tags).where("name LIKE ? ", "%#{params[:name]}%")
+    @articles = Article.joins(:tags).where("name LIKE ? ", "%#{params[:name]}%").distinct
     render :json => @articles
   end
 

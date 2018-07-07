@@ -99,7 +99,6 @@ GEM
     mini_portile2 (2.3.0)
     minitest (5.11.3)
     multi_json (1.13.1)
-    mysql2 (0.5.1)
     nio4r (2.3.1)
     nokogiri (1.8.3)
       mini_portile2 (~> 2.3.0)
@@ -107,6 +106,7 @@ GEM
     parallel (1.12.1)
     parser (2.5.1.0)
       ast (~> 2.4.0)
+    pg (1.0.0)
     powerpack (0.1.2)
     public_suffix (3.0.2)
     puma (3.11.4)
@@ -213,7 +213,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
-  mysql2 (>= 0.3.18, < 0.6.0)
+  pg
   puma (~> 3.7)
   rails (~> 5.1.6)
   rubocop

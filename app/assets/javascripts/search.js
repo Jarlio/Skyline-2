@@ -57,7 +57,9 @@ function search_user(){
         $.each(data, function (key, value) {
 
             var intro_text;
-            if (value.description.length > 200)
+            if (value.description === null)
+                intro_text = 'no description';
+            else if (value.description.length > 200)
                 intro_text = value.description.substr(0, 200) + '...';
             else
                 intro_text = value.description;
