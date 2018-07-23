@@ -87,7 +87,7 @@ function search_user() {
 
                 var result = $('<div class="uk-container jar-result"></div>');
 
-                var link = $('<a href="user/' + value.username + '"></a>')
+                var link = $('<a href="/user/' + value.username + '"></a>')
                 var username = $('<h4 class="search-title">' + value.name + '</h4>')
                 var intro = $('<p class="search-description">' + intro_text + '</p>')
                 link.append(username);
