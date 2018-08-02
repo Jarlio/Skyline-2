@@ -8,11 +8,7 @@ class CommentsController < ApplicationController
     redirect_to @article
   end
 
-  def update
-  end
-
   def destroy
-
     @article = Article.find(params[:article_id])
     @comment = @article.comments.find(params[:id])
 

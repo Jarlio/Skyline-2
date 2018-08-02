@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180801180930) do
+ActiveRecord::Schema.define(version: 20180802221622) do
 
   create_table "Articles_Tags", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "Article_id", null: false
@@ -24,11 +24,12 @@ ActiveRecord::Schema.define(version: 20180801180930) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.integer "score", default: 0, null: false
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "comment", null: false
+    t.text "text", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
@@ -64,6 +65,16 @@ ActiveRecord::Schema.define(version: 20180801180930) do
     t.datetime "updated_at", null: false
     t.bigint "article_id", null: false
     t.index ["article_id"], name: "index_paragraphs_on_article_id"
+  end
+
+  create_table "ratings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.bigint "article_id", null: false
+    t.index ["article_id"], name: "index_ratings_on_article_id"
+    t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
   create_table "tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -103,4 +114,6 @@ ActiveRecord::Schema.define(version: 20180801180930) do
   add_foreign_key "galleries", "articles"
   add_foreign_key "images", "galleries"
   add_foreign_key "paragraphs", "articles"
+  add_foreign_key "ratings", "articles"
+  add_foreign_key "ratings", "users"
 end
