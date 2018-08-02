@@ -1,5 +1,6 @@
 div.article-container {
   margin-top: 50px;
+  margin-bottom: 20px;
   article.article {
     h1 {
       text-align: center;
@@ -137,6 +138,13 @@ div.article-container {
     &:active{
       text-decoration: none;
       color: white;
+    }
+  }
+
+  .comment-form{
+    textarea{
+      margin: 10px 0 10px 0;
+      height: 100px;
     }
   }
 }

@@ -76,11 +76,11 @@ div.wel_header_keeper > h1 {
 span.text-gradient {
   z-index: -1;
   position: absolute;
-  width: 230px;
-  height: 30px;
-  top: 20px;
+  width: 239px;
+  height: 40px;
+  top: 10px;
   left: -10px;
-  background: linear-gradient(to right, orangered, orange); /* Standard syntax (must be last) */
+  background: linear-gradient(to right, #8eb8e2, #32d296);
 }
 
 nav#nav_bar {

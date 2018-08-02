@@ -13,4 +13,5 @@ class User < ApplicationRecord
 
   has_many :articles, dependent: :delete_all
   has_many :tags, through: :articles
+  has_many :comments, dependent: :delete_all
 end

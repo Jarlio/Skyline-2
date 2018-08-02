@@ -19,6 +19,8 @@ class ArticlesController < ApplicationController
     @contents += @article.paragraphs
     @contents += @article.galleries
     @contents.sort_by! {|content| content.position }
+
+    @comments = @article.comments
   end
 
   def destroy
