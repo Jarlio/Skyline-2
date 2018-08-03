@@ -15,3 +15,4 @@
 //= require jquery
 //= require uikit/uikit
 //= require uikit/uikit-icons
+//= require jquery.raty.js

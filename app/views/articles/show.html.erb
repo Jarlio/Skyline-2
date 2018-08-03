@@ -19,6 +19,14 @@
       <% end %>
     </p>
 
+    <div class="ratings">
+      <p>Averate rating</p>
+      <div id="star"></div>
+
+      <p>Your rating</p>
+      <div id="user_star"></div>
+    </div>
+
     <p><%= @article.intro %></p>
 
     <% positions = [] # used to create position for new paragraphs %>
@@ -225,6 +233,25 @@
   </div>
 </div>
 
+<script>
+    $('#star').raty({
+        readOnly: true,
+        score: <%= @article.average_rating %>,
+        path: '/assets'
+    });
+
+    $('#user_star').raty({
+        score: <%= @rating.score %>,
+        path: '/assets',
+        click: function(score, evt) {
+            $.ajax({
+                url: '/ratings/' + <%= @rating.id %>,
+                type: 'PATCH',
+                data: { score: score }
+            });
+        }
+    });
+</script>
 
 <!--scripts (only this page)-->
 <%= javascript_include_tag 'article' %>

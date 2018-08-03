@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180802221622) do
+ActiveRecord::Schema.define(version: 20180803103420) do
 
   create_table "Articles_Tags", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "Article_id", null: false
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20180802221622) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.integer "score", default: 0, null: false
+    t.integer "scorenumb"
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
@@ -68,11 +69,11 @@ ActiveRecord::Schema.define(version: 20180802221622) do
   end
 
   create_table "ratings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "score"
+    t.bigint "article_id"
+    t.bigint "user_id"
+    t.integer "score", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
-    t.bigint "article_id", null: false
     t.index ["article_id"], name: "index_ratings_on_article_id"
     t.index ["user_id"], name: "index_ratings_on_user_id"
   end

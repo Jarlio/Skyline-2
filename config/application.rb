@@ -17,6 +17,7 @@ module Skyline
     config.assets.enabled = true
     config.assets.paths << Rails.root.join('app/assets/fonts')
 
+    config.action_view.embed_authenticity_token_in_remote_forms = true
     config.secret_key_base = '21b26fdc56f848d2cfa43fa4ecf2ac1c4a122591129d683cd6a6dfd5fa7fa28ea039cfddc5771e48e90ba068c65f669ef96a31a0d91f27aa31ec9b4a3dd62cf8'
   end
 end

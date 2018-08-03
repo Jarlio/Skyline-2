@@ -15,12 +15,21 @@ class ArticlesController < ApplicationController
   def show
     @article = Article.find(params[:id])
 
+    # contents {paragraph / images}
     @contents = []
     @contents += @article.paragraphs
     @contents += @article.galleries
     @contents.sort_by! {|content| content.position }
 
+    # comments
     @comments = @article.comments
+
+    # rating
+    @rating = Rating.where(article_id: @article.id, user_id: current_user.id).first
+    unless @rating
+      @rating = Rating.create(article_id: @article.id, user_id: current_user.id, score: 0)
+    end
+
   end
 
   def destroy

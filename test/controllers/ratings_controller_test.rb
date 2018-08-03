@@ -1,7 +1,9 @@
 require 'test_helper'
 
 class RatingsControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
+  test "should get update" do
+    get ratings_update_url
+    assert_response :success
+  end
+
 end

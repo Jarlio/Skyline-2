@@ -16,4 +16,10 @@ class Article < ApplicationRecord
                           foreign_key: "Article_id",
                           join_table: "Articles_Tags",
                           association_foreign_key: "Tag_id"
+
+  # get rating
+  def average_rating
+    ratings.sum(:score) / ratings.size
+  end
+
 end
