@@ -17,15 +17,11 @@
           Search settings
         </a>
       <% end %>
+      <span class="uk-float-right">
+        <span id="star" uk-tooltip="Average rating"></span> |
+        <span id="user_star" uk-tooltip="Your rating"></span>
+      </span>
     </p>
-
-    <div class="ratings">
-      <p>Averate rating</p>
-      <div id="star"></div>
-
-      <p>Your rating</p>
-      <div id="user_star"></div>
-    </div>
 
     <p><%= @article.intro %></p>
 
@@ -243,11 +239,11 @@
     $('#user_star').raty({
         score: <%= @rating.score %>,
         path: '/assets',
-        click: function(score, evt) {
+        click: function (score, evt) {
             $.ajax({
                 url: '/ratings/' + <%= @rating.id %>,
                 type: 'PATCH',
-                data: { score: score }
+                data: {score: score}
             });
         }
     });
