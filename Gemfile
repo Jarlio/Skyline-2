@@ -61,3 +61,6 @@ gem 'devise'
 
 # image upload functionality
 gem 'carrierwave'
+
+#replication
+gem "ar-octopus"

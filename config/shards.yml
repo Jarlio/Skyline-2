@@ -1,0 +1,16 @@
+octopus:
+  environments:
+  - development
+  - production
+  development:
+    shard_one:
+      host: 192.168.0.107
+      adapter: mysql2
+      username: root
+      password: Raven
+      database: skyline_development
+  production:
+    shard_one:
+      host: localhost
+      adapter: mysql
+      database: app_production
