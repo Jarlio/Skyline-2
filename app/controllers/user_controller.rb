@@ -22,7 +22,8 @@ class UserController < ApplicationController
     @end = Date.today.year - 12
     @start = @end - 100
 
-    @user = User.find_by_username(params[:username]).using(:shard_one)
+    @user = User.find_by_username(params[:username])
+                #.using(:shard_one)
     if @user.nil?
       render 'user/error'
     else

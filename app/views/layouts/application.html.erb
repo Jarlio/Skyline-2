@@ -19,21 +19,23 @@
       </a>
     </div>
 
-    <div class="jar-nav-item">
-      <div class="uk-search uk-search-default jar-search">
-        <a href="" uk-search-icon></a>
-        <input class="uk-search-input search_input" id="search_input" type="search" placeholder="Search...">
-        <div class="jar-search-results uk-container" id="jar-search-results"></div>
+    <% if user_signed_in? %>
+      <div class="jar-nav-item">
+        <div class="uk-search uk-search-default jar-search">
+          <a href="" uk-search-icon></a>
+          <input class="uk-search-input search_input" id="search_input" type="search" placeholder="Search...">
+          <div class="jar-search-results uk-container" id="jar-search-results"></div>
+        </div>
       </div>
-    </div>
 
-    <div class="jar-nav-item">
-      <select class="uk-select search-options" id="search-options" style="width: 200px">
-        <option value="users">Users</option>
-        <option value="tags">Article by tags</option>
-        <option value="titles">Article by title</option>
-      </select>
-    </div>
+      <div class="jar-nav-item">
+        <select class="uk-select search-options" id="search-options" style="width: 200px">
+          <option value="users">Users</option>
+          <option value="tags">Article by tags</option>
+          <option value="titles">Article by title</option>
+        </select>
+      </div>
+    <% end %>
   </div>
 
 

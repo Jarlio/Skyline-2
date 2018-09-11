@@ -8,12 +8,13 @@ class ArticlesController < ApplicationController
   end
 
   def search_title
-    @articles = Article.where("title LIKE ?", "%#{params[:title]}%")
+    @articles = Article.using(:shard_one).where("title LIKE ?", "%#{params[:title]}%")
     render :json => @articles
   end
 
   def show
-    @article = Article.find(params[:id]).using(:shard_one)
+    @article = Article.find(params[:id])
+                   #.using(:shard_one)
 
     # contents {paragraph / images}
     @contents = []
