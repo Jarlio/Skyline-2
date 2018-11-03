@@ -1,12 +1,12 @@
 # README
 
-An app made for information sharing.
+An app made for information sharing that supports basic mysql replications on two servers, using octupus gem.
 
 TODO:
 1. Profile
-    * Background
-    * About me
-    * Specialization
+    * Background - done
+    * About me - done
+    * Specialization - done
 2. Articles
     * Database - done
     * Create - done
@@ -21,7 +21,7 @@ TODO:
             * delete photo
         * code
     * Subscribe system
-    * Rating system
+    * Rating system - done
     * tag system - done
 3. Admin Page
 
@@ -34,7 +34,7 @@ Regular todo
 * Search users and articles
 * Make pages adaptable at any resolution
     * Homepage - done
-    * navbar
+    * navbar - done
     * article - done
     * profile - done
     
@@ -42,8 +42,8 @@ Regular todo
 Known bugs:
 * No ajax functionality
     * Tags - done
-    * Search
+    * Search - done
     * Image add
     * Image delete
-* User can add tags with the same name
-* User can add tags with nil strings
+* User can add tags with the same name - done
+* User can add tags with nil strings - done
