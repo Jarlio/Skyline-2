@@ -3,18 +3,18 @@ class ArticlesController < ApplicationController
   before_action :authenticate_user!
 
   def search_tag
-    @articles = Article.joins(:tags).where("name LIKE ? ", "%#{params[:name]}%").distinct
+    @articles = Article.using(:shard_two).joins(:tags).where("name LIKE ? ", "%#{params[:name]}%").distinct
     render :json => @articles
   end
 
   def search_title
-    @articles = Article.using(:shard_one).where("title LIKE ?", "%#{params[:title]}%")
+    @articles = Article.using(:shard_two).where("title LIKE ?", "%#{params[:title]}%")
     render :json => @articles
   end
 
   def show
     @article = Article.find(params[:id])
-                   #.using(:shard_one)
+                   # .using(:shard_one)
 
     # contents {paragraph / images}
     @contents = []

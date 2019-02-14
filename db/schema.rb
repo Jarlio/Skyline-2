@@ -24,8 +24,6 @@ ActiveRecord::Schema.define(version: 20180803103420) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.integer "score", default: 0, null: false
-    t.integer "scorenumb"
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
